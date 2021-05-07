@@ -76,13 +76,12 @@ const UploadPhotos = () => {
         multireader.onload = () => {
           setPreview(prev => ({ ...prev, [index]: multireader.result}))
         }
-      });
+      })
     }
     else {
       reader.readAsDataURL(fileBox.current.files[0])
     }
   }
-
   reader.addEventListener("load", function () {
     if(fileBox.current.fileslength > 1){
 
@@ -128,8 +127,12 @@ const UploadPhotos = () => {
           if(res) {
             if(Object.keys(photos).length > 1) {
               console.log(res.data.data.link)
-              delete photos[index]
-              setPreview(prev => ({ ...prev, [index]: undefined}))
+              document.getElementById(index).style.opacity = 0
+              setTimeout(() => {
+                delete photos[index]
+                setPreview(prev => ({ ...prev, [index]: undefined}))
+              }, 250)
+
             }
             else {
               setPreview()
@@ -218,7 +221,7 @@ const UploadPhotos = () => {
                   return
                 }
                 else {
-                  return <img key={index} src={value} />
+                  return <img id={index} key={index} src={value} />
                 }
               })
             :
