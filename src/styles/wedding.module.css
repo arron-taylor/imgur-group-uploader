@@ -10,109 +10,6 @@ body {
   flex-direction: column;
   max-height: 100vh;
 }
-  .createPostContainer .header {
-    display: flex;
-    -webkit-transition: all .25s ease-in-out;
-		margin: 0px auto;
-    bottom: 0px;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-  }
-  .createPostContainer .header div.editButtons {
-    width: 75%;
-    display: flex;
-    background: rgba(250, 250, 250, 0.85);
-    color: #e03f3f;
-    font-family: ubuntu;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(3px);
-    padding: 5px 15px;
-    margin: 0px;
-  }
-  .createPostContainer .header div.imagesBar {
-    color: #e03f3f;
-    font-family: ubuntu;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(3px);
-    padding: 15px 0px;
-  }
-  .createPostContainer .header div.editButtons button {
-    margin: 5px 5px;
-    padding: 5px;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    background: #e03f3f;
-    font-size: 16px;
-    width: 50px;
-  }
-  .createPostContainer .header div button:hover {
-    cursor: pointer;
-    background: #333;
-    color: #fff;
-  }
-  .createPostContainer .title {
-    display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-  	position: fixed;
-		text-align: center;
-		margin-top: 100px;
-    font-family: "ubuntu", "helvetica neue";
-    font-size: 22px;
- }
-  span {
-    font-size: 20px;
-    font-family: ubuntu;
-  }
-  .addImage, .postButton, .previewButton {
-    border: none;
-    border-radius: 66px;
-    margin: 5px auto;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-    height: 70px;
-    color: #111;
-    font-size: 22pxx;
-    font-family: "ubuntu", "helvetica neue";
-    font-weight: 300;
-    background: #df9da9;
-    background: #f2e5de;
-
-    background: #79164f;
-    color: #fff;
-  }
-  .previewButton {
-    margin-right: auto;
-  }
-  .addImage:hover, .postButton:hover, .previewButton:hover{
-    background: #802121;
-    cursor: pointer;
-  }
-  .createPostContainer .title input {
-    border: none;
-		width: 75%;
-    outline: none;
-    padding: 15px;
-		margin: 0px auto;
-    font-size: 28px;
-    background: rgba(250, 250, 250, 0.85);
-    border-left: 2px solid #e03f3f;
-    color: #e03f3f;
-    font-family: ubuntu;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(3px);
-    display: block;
-		margin: 0px auto;
-		-webkit-transition: all .25s ease-in-out;
-  }
-  .createPostContainer .title input:focus {
-    border: 1px solid #e03f3f;
-    border-left: 2px solid #e03f3f;
-    background: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
-  }
   .createPostContainer .body {
     width: 99%;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
@@ -123,26 +20,10 @@ body {
   .createPostContainer .body img {
     border-radius: 6px;
   }
-  .createPostContainer .body .textarea {
-    min-height: 100px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
-    background: #fff;
-    font-size: 18px;
-    font-weight: 400;
-    border: 1px #ddd;
-    padding-left: 15px;
-    border-left: 1px solid red;
-    resize: none;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    line-height: 30px;
 
-}
 	.createPostContainer .actions {
 		position: fixed;
     font-size: 28px;
-    color: #e03f3f;
     font-family: ubuntu;
 	 	bottom: 5%;
     display: flex;
@@ -160,9 +41,6 @@ body {
     font-size: 22px;
     font-family: "ubuntu", "helvetica neue";
     font-weight: 300;
-    background: #df9da9;
-    background: #f2e5de;
-
     background: #79164f;
     color: #fff;
   }
@@ -460,26 +338,3 @@ body {
 
 
 
-
-
-
-
-
-
-	/** BLOG POST ROOT **/
-
-.blogPostContainer {
-	background: #fff;
-	border-radius: 6px;
-	border: 1px solid #ddd;
-	margin: 15px auto;
-	width: 350px;
-	min-height: 200px;
-	padding: 25px;
-  display: flex;
-  flex-direction: column;
-}
-	.blogPostContainer h1 {
-		font-family: 'Ubuntu';
-		border-bottom: 1px solid #ddd;
-	}
