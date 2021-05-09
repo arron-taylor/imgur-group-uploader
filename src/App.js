@@ -50,6 +50,14 @@ const UploadPhotos = () => {
     }, 250)
   }
 
+  const anonPoster = () => {
+    localStorage.setItem('nametoken', 'anonymous poster')
+    document.getElementById('dialog').style.opacity = '0'
+    setTimeout(() => {
+      document.getElementById('dialog').style.display = 'none'
+    }, 250)
+  }
+
   const openImageTray = (e) => {
     document.getElementById('imageTray').style.display = 'flex'
     setTimeout(() => {
@@ -70,7 +78,6 @@ const UploadPhotos = () => {
   }
 
   const photoSuccessNotify = () => {
-
     setTimeout( () => {
       document.getElementById('successDialog').style.display = 'flex'
       setTimeout(() => {
@@ -82,10 +89,8 @@ const UploadPhotos = () => {
         document.getElementById('successDialogInner').style.transform = "translate(0px, -100vh)"
 
       }, 3000)
-
       setTimeout(() => {
         document.getElementById('successDialog').style.display = 'none'
-
       }, 3500)
     }, 100)
   }
@@ -323,7 +328,7 @@ const UploadPhotos = () => {
        </div>
        <div className={classes.actions}>
           <button className={classes.continue} onClick={postName}> <span> Continue </span> <RightArrow style={{marginLeft: '-30px', marginRight: '5px'}} /> </button>
-          <button className={classes.nothanks} onClick={() => localStorage.setItem('nametoken', 'Anonymous')}> No thanks </button>
+          <button className={classes.nothanks} onClick={anonPoster}> No thanks </button>
         </div>
       </div>
      </div>
