@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UploadPhotos = () => {
-  const textBox = useRef()
   const fileBox = useRef()
   const materialclasses = useStyles()
   const [uploading, setUploading] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [uploadSize, setUploadSize] = useState(0)
   const [preview, setPreview] = useState()
   const [albumImages, setAlbumImages] = useState([])
   const [name, setName] = useState()
@@ -68,13 +69,62 @@ const UploadPhotos = () => {
     }, 200)
   }
 
+  const photoSuccessNotify = () => {
+
+    setTimeout( () => {
+      document.getElementById('successDialog').style.display = 'flex'
+      setTimeout(() => {
+        document.getElementById('successDialog').style.opacity = '1'
+        document.getElementById('successDialogInner').style.transform = "translate(0px, 0px)"
+      }, 0)
+      setTimeout(() => {
+        document.getElementById('successDialog').style.opacity = '0'
+        document.getElementById('successDialogInner').style.transform = "translate(0px, -100vh)"
+
+      }, 3000)
+
+      setTimeout(() => {
+        document.getElementById('successDialog').style.display = 'none'
+
+      }, 3500)
+    }, 100)
+  }
+
+  const sizeWarning = () => {
+    setTimeout( () => {
+      document.getElementById('sizeWarning').style.display = 'flex'
+      setTimeout(() => {
+        document.getElementById('sizeWarning').style.opacity = '1'
+        document.getElementById('sizeWarningInner').style.transform = "translate(0px, 0px)"
+      }, 0)
+
+    }, 100)
+  }
+
+  const sizeWarningClose = () => {
+    setTimeout(() => {
+      document.getElementById('sizeWarning').style.opacity = '0'
+      document.getElementById('sizeWarningInner').style.transform = "translate(0px, -100vh)"
+    }, 0)
+    setTimeout(() => {
+      document.getElementById('sizeWarning').style.display = 'none'
+    }, 250)
+  }
+
   const postPhoto = () => {
+    let totalFileSize = 0
     if(Object.keys(fileBox.current.files).length > 1) {
       Object.entries(fileBox.current.files).forEach(([key, value], index) => {
         const multireader = new FileReader()
         multireader.readAsDataURL(fileBox.current.files[index])
         multireader.onload = () => {
           setPreview(prev => ({ ...prev, [index]: multireader.result}))
+          totalFileSize += parseFloat( ((fileBox.current.files[index].size)/1024/1024) )
+          setUploadSize( totalFileSize.toFixed(2) + 'MB')
+          console.log( totalFileSize.toFixed(2) + 'MB')
+          if(totalFileSize > 10) {
+            sizeWarning()
+          }
         }
       })
     }
@@ -82,6 +132,7 @@ const UploadPhotos = () => {
       reader.readAsDataURL(fileBox.current.files[0])
     }
   }
+
   reader.addEventListener("load", function () {
     if(fileBox.current.fileslength > 1){
 
@@ -123,16 +174,18 @@ const UploadPhotos = () => {
             album: '9WkD5ae',
             description: nametoken,
           },
+          onUploadProgress: (data) => {
+            setUploadProgress(Math.round((100 * data.loaded) / data.total))
+          }
         }).then(res => {
           if(res) {
             if(Object.keys(photos).length > 1) {
-              console.log(res.data.data.link)
+              setUploadProgress(0)
               document.getElementById(index).style.opacity = 0
               setTimeout(() => {
                 delete photos[index]
                 setPreview(prev => ({ ...prev, [index]: undefined}))
               }, 250)
-
             }
             else {
               setPreview()
@@ -141,6 +194,7 @@ const UploadPhotos = () => {
               setAlbumImages([])
               getAlbumImages()
               setTimeout(() => window.scrollTo(0, document.getElementById((res.data.data.link.substring(20))).offsetTop), 1000)
+              photoSuccessNotify()
             }
           }
         })
@@ -160,10 +214,12 @@ const UploadPhotos = () => {
           album: '9WkD5ae',
           description: nametoken,
         },
+        onUploadProgress: (data) => setUploadProgress(Math.round((100 * data.loaded) / data.total))
       }).then(res => {
         setPreview()
         setUploading(false)
         closeImageTray()
+        photoSuccessNotify()
       })
     }
 
@@ -210,9 +266,14 @@ const UploadPhotos = () => {
      <div className={classes.imageTray} id='imageTray'>
       <div className={classes.inner} id="imageTrayInner">
         <div className={classes.title}>
-            {preview? <> <span></span> Preview  <button onClick={closeImageTray }> <Cancel style={{fontSize: '30px'}} /> </button> </> :  <button style={{textAlign: 'center', margin: '50px auto'}} onClick={closeImageTray }> <Cancel style={{marginLeft: '-25px', fontSize: '130px'}} /> </button>  }
+            {preview? <> <span> Preview </span> <button onClick={closeImageTray }> <Cancel style={{fontSize: '30px'}} /> </button> </> :  <button style={{textAlign: 'center', margin: '50px auto'}} onClick={closeImageTray }> <Cancel style={{marginLeft: '-10px', fontSize: '130px'}} /> </button>  }
         </div>
-        { uploading && <CircularProgress style={{margin: '0px auto', color: '#fff', height: '100px', width: '100px', marginBottom: '50px', marginTop: '0px'}}  />}
+        { uploading &&
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <CircularProgress style={{color: '#fff', height: '100px', width: '100px', marginTop: '0px'}} />
+            <span style={{color: '#fff', fontSize: '25px', position: 'absolute'}}> {uploadProgress}% </span>
+        </div>
+        }
         <div className={classes.body} id='imageTrayBody'>
           {preview? <>
             {fileBox.current.files.length > 1?
@@ -231,7 +292,7 @@ const UploadPhotos = () => {
         </div>
         <div className={classes.actions}>
           {preview?
-            <>{uploading? <button disabled> Uploading... </button> : <button id='uploadButton' onClick={updatePhoto}> Upload </button> }</>
+            <>{uploading? <button disabled> Uploading... </button> : <button id='uploadButton' onClick={updatePhoto}> Upload {uploadSize} </button> }</>
             :
             <>
               <button id='uploadButton' className={classes.chooseButton} onClick={() => fileBox.current.click()}> Choose Photos </button>
@@ -254,7 +315,7 @@ const UploadPhotos = () => {
       <div className={classes.inner}>
        <div className={classes.title}>
           <h1> Please type your name  </h1>
-          <p> We wanna know who uploaded the photos :) </p>
+          <p> We wanna know who uploaded the photos &#128522;	 </p>
        </div>
        <div className={classes.body} id='previewDialogueBody'>
          <span> your name </span>
@@ -262,7 +323,33 @@ const UploadPhotos = () => {
        </div>
        <div className={classes.actions}>
           <button className={classes.continue} onClick={postName}> <span> Continue </span> <RightArrow style={{marginLeft: '-30px', marginRight: '5px'}} /> </button>
-          <button className={classes.nothanks} onClick={() => console.log('no thanks')}> No thanks </button>
+          <button className={classes.nothanks} onClick={() => localStorage.setItem('nametoken', 'Anonymous')}> No thanks </button>
+        </div>
+      </div>
+     </div>
+
+     <div className={classes.successDialog} id="successDialog">
+     <div className={classes.inner} id="successDialogInner">
+       <div className={classes.title}>
+          <h1 style={{fontSize: '22px'}}> Uploaded successfully &#128522;	</h1>
+       </div>
+      </div>
+     </div>
+
+     <div className={classes.sizeWarning} id="sizeWarning">
+     <div className={classes.inner} id="sizeWarningInner">
+       <div className={classes.title}>
+        <h1 style={{color: 'red'}}>&#129488; WARNING! LARGE PHOTOS  &#128561;</h1>
+       </div>
+       <div className={classes.body} id='sizeWarningBody'>
+         <span>
+            You are attempting to upload {uploadSize} worth of photos... make sure to check your signal strength before continuing.
+            <br />
+            If your signal strength is low this <b> will </b> take a while.
+          </span>
+       </div>
+       <div className={classes.actions}>
+          <button className={classes.nothanks} onClick={sizeWarningClose}> OK </button>
         </div>
       </div>
      </div>
