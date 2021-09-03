@@ -5,14 +5,20 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "image-blob-reduce": "^3.0.1",
+    "multimath": "^2.0.0",
+    "pica": "^7.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-ga": "^3.3.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "webworkify": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start --host 0.0.0.0",
