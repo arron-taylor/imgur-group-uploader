@@ -1,7 +1,8 @@
 
 /** CREATE POST STYLING **/
 body {
-  background: #17010e;
+  background: url('https://i.imgur.com/fZ9313e.png'), rgba(80, 43, 58, .25);
+  background-size: cover;
 }
 .createPostContainer {
   margin: 0px auto;
@@ -10,18 +11,28 @@ body {
   flex-direction: column;
   max-height: 100vh;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap');
+
+
 @media only screen and (min-width: 1000px) {
+  .createPostContainer {
+    margin-left: 20%;
+  }
   .createPostContainer .body  {
-    width: 40%;
+    width: 75%;
+  }
+  .createPostContainer .actions {
+    display: none !important;
   }
 }
 @media only screen and (max-width: 1000px) {
   .createPostContainer .body  {
     width: 99%;
-    }
+  }
 }
   .createPostContainer .body {
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
     border: 1px #ddd;
     padding-bottom: 115px;
 		margin: 2.5% auto;
@@ -47,7 +58,7 @@ body {
   }
   @media only screen and (max-width: 1000px) {
     .uploadButton  {
-      width: 75%;
+      width: 85%;
     }
   }
   .uploadButton{
@@ -55,12 +66,12 @@ body {
     border-radius: 66px;
     margin: 5px auto;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-    height: 70px;
+    height: 60px;
     color: #111;
     font-size: 22px;
-    font-family: "ubuntu", "helvetica neue";
-    font-weight: 300;
-    background: #79164f;
+    font-family: "Montserrat", "Helvetica Neue";
+    font-weight: 500;
+    background: #D87C91;
     color: #fff;
   }
 
@@ -100,103 +111,200 @@ body {
   background: transparent;
   color: #fff;
   padding: 25px;
+  cursor: pointer;
   margin-left: auto;
 }
 .previewDialogue {
-  background: rgba(0, 0, 0, 0.25);
   position: fixed;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   top: 0px;
   display: none;
   border: 0px;
-  backdrop-filter: blur(8px);
   opacity: 0;
   -webkit-transition: all .25s ease-in-out;
   overflow: none;
 }
 
 @media only screen and (min-width: 1000px) {
+  .previewDialogue {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
+  }
   .previewDialogue .inner {
     background: #79164f;
     background: #fff;
     flex-direction: column;
     display: flex;
-    border-radius: 6px;;
-    height: 50%;
     width:25%;
-    margin: 10% auto;
+    height: 100%;
+    margin: 0px 0px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
   }
+  .desktopBar {
+    display: flex;
+    position: fixed;
+    width: 25%;
+    height: 100%;
+    top: 0px;
+    border: 0px;
+    -webkit-transition: all .25s ease-in-out;
+    overflow: none;
+  }
+  .desktopBar .inner {
+    background: rgba(250, 250, 250, 0.75);
+    backdrop-filter: blur(8px);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    display: flex;
+    width:100%;
+    height: 100%;
+    margin: 0px 0px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  }
+  .desktopBar h1:first-child {
+    margin-top: 50%;
+  }
+  .desktopBar h1 {
+    margin: 25px auto;
+    text-align: center;
+    font-weight: 400;
+    font-family: "Great Vibes", "Helvetica Neue";
+  }
+  .desktopBar .names {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: 0px;
+    padding: 10px;
+    border-top: 1px solid#D87C91;
+    border-bottom: 1px solid#D87C91;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(to bottom, rgba(250, 250, 250, 0.25), rgba(250, 250, 250, 0.75));
+    color: #555;
+  }
+  .desktopBar .names h3 {
+    font-family: "Great Vibes", "Helvetica Neue";
+    font-size: 25px;
+    color: #111;
+    font-weight: 400;
+  }
+  .desktopBar .names h4 {
+    font-family: "Montserrat", "Helvetica Neue";
+    font-size: 12px;
+  }
+  .desktopBar .body {
+    height: 100%;
+    margin-top: auto;
+    display: flex;
+  }
+  .desktopBar button {
+    border: none;
+    border-radius: 66px;
+    margin-top: auto;
+    margin-bottom: 25px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+    height: 50px;
+    width: 80%;
+    color: #111;
+    font-size: 22px;
+    font-family: "ubuntu", "helvetica neue";
+    font-weight: 300;
+    font-family: "Montserrat", "Helvetica Neue";
+    font-weight: 500;
+    background: #D87C91;
+    color: #fff;
+  }
+
 }
 @media only screen and (max-width: 1000px) {
   .previewDialogue .inner {
-    background: #79164f;
-    background: #fff;
+    text-align: center;
     flex-direction: column;
     display: flex;
-    border-radius: 6px;;
-    height: 50%;
-    width: 85%;
-    margin: 15% auto;
+    width: 100%;
+    background: rgba(250, 250, 250, 0.75);
+    backdrop-filter: blur(8px);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
+  }
+  .desktopBar {
+    display: none;
   }
 }
 
   .previewDialogue .inner div {
     padding: 15px;
     font-family: ubuntu;
+
   }
 
   .previewDialogue .inner .title h1 {
-    font-size: 28px;
-    font-family: "Ubuntu", "Helvetica Neue";
+    font-size: 54px;
+    max-width: 80%;
+    font-family: "Great Vibes", "Helvetica Neue";
     text-align: center;
+    margin: 0px auto;
+    display: block;
     color: #fefefe;
-    color: #333;
+    color: #111;
     font-weight: 500;
+    margin-top: 50px;
+  }
+  .previewDialogue .inner .title span {
+    display: flex;
+    margin: 0px auto;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .previewDialogue .inner .title h2 {
+    color: #D87C91;
+    font-size: 35px;
+    font-family: "Montserrat", "Helvetica Neue";
+    opacity: .75;
+    width: 40%;
   }
   .previewDialogue .inner .title p {
-    font-size: 18px;
-    font-family: "Ubuntu", "Helvetica Neue";
-    text-align: center;
-    color: #888;
-    font-weight: 300;
+    font-size: 14px;
+    font-family: "Montserrat", "Helvetica Neue";
+    text-transform: uppercase;
+    text-align: left;
+    color: #727272;
+    font-weight: 600;
+    line-height: 20px;
   }
   .previewDialogue .inner .body {
     font-size: 18px;
     padding: 15px;
   }
   .previewDialogue .inner .body span {
-    margin-left: 9%;
+    margin-left: 4%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-    color: #ccc;
+    color: #555;
     font-size: 16px;
     height: 30px;
-    font-weight: 300;
+    font-weight: 500;
     display: block;
+    text-align: left;
   }
 
   .previewDialogue input {
     border: none;
-		width: 70%;
+		width: 80%;
     outline: none;
-    padding: 10px 20px;
-    font-size: 22px;
-    border: 1px solid #ccc;
+    padding: 15px 20px;
+    font-size: 20px;
+    border: 1px solid #D87C91;
+    border-radius: 6px;
     color: #722F37;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    backdrop-filter: blur(3px);
+    font-family: "Montserrat", "Helvetica Neue";
+    background: rgba(250, 250, 250, 0.75);
     display: block;
 		margin: 0px auto;
-    font-weight: 400;
-    border-radius: 0px;
+    font-weight: 500;
 		-webkit-transition: all .25s ease-in-out;
     -webkit-appearance: none;
   }
@@ -207,7 +315,6 @@ body {
     color: #722F37 !important;
   }
   .previewDialogue .actions {
-    margin-top: auto;
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -220,90 +327,125 @@ body {
     margin: 5px auto;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
     width: 90%;
-    height: 60px;
+    margin-bottom: 20px;
+    height: 50px;
     color: #111;
     font-size: 18px;
-    font-family: "ubuntu", "helvetica neue";
+    font-family: "Montserrat", "Helvetica Neue";
     font-weight: 300;
-    background: #df9da9;
-    background: #f2e5de;
-    background: #79164f;
+    background: #D87C91;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   button.continue span {
-    font-family: "ubuntu", "helvetica neue";
+    font-family: "Montserrat", "Helvetica Neue";
+    text-transform: uppercase;
     margin: 0px auto;
+    font-weight: 500;
   }
   .previewDialogue .actions button.continue:active {
     background: #590a38;
   }
+
   .previewDialogue .actions button.nothanks {
     text-decoration: underline;
     background-color: transparent;
     border: 0px;
+    font-family: "Montserrat", "Helvetica Neue";
     outline: 0px;
     font-size: 14px;
+    text-transform: uppercase;
     color: #888;
     padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 600;
   }
-
+  .previewDialogue .names {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 0px;
+    border-top: 1px solid#D87C91;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(to bottom, rgba(250, 250, 250, 0.25), rgba(250, 250, 250, 0.75));
+    color: #555;
+  }
+  .previewDialogue .names h3 {
+    font-family: "Great Vibes", "Helvetica Neue";
+    font-size: 20px;
+    color: #111;
+    font-weight: 400;
+  }
+  .previewDialogue .names h4 {
+    font-family: "Montserrat", "Helvetica Neue";
+    font-size: 12px;
+  }
 
   @media only screen and (min-width: 1000px) {
     .successDialog .inner, .sizeWarning .inner {
-      width: 25%;
+      width: 60%;
+
     }
   }
   @media only screen and (max-width: 1000px) {
     .successDialog .inner, .sizeWarning .inner {
-      width: 85%;
+      width: 95%;
     }
   }
 
 .successDialog, .sizeWarning {
-  background: rgba(0, 0, 0, 0.25);
   position: fixed;
   width: 100%;
   min-height: 100vh;
   top: 0px;
   border: 0px;
-  backdrop-filter: blur(8px);
   -webkit-transition: all .25s ease-in-out;
   overflow: none;
   display: none;
   opacity: 0;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(8px);
 }
 .successDialog .inner, .sizeWarning .inner {
-  color: #79164f;
-  background: #fff;
+  background: rgba(250, 250, 250, 0.85);
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
   flex-direction: column;
   display: flex;
-  margin: 5% auto;
+  margin: 25px auto;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+  border-radius: 3px;
   text-align: center;
   margin-bottom: auto;
   transform: translate(0px, -100vh);
   -webkit-transition: all .25s ease-in-out;
 }
 .successDialog .inner h1, .sizeWarning .inner h1 {
-  color: #79164f;
+  color: #333;
   font-size: 18px;
+  font-family: "Montserrat", "Helvetica Neue";
   display: block;
-  font-weight: 400;
-  padding: 15px 15px 5px 15px;
+  font-weight: 600;
+}
+.successDialog .inner p, .sizeWarning .inner p {
+  color: #888;
+  font-size: 12px;
+  margin: 10px;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Helvetica Neue";
+  display: block;
+  font-weight: 600;
 }
 .successDialog .inner span, .sizeWarning .inner span {
-  font-size: 18px;
+  font-size: 14px;
+  font-family: "Montserrat", "Helvetica Neue";
   display: block;
-  padding: 5px 15px 25px 15px;
+  color: #333;
+  padding: 5px 15px 15px 15px;
   font-weight: 400;
-  line-height: 25px;
+  line-height: 20px;
 }
 .successDialog .inner button, .sizeWarning .inner button {
     border: none;
@@ -311,12 +453,12 @@ body {
     margin: 5px auto 15px auto;
     text-align: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-    height: 40px;
+    height: 30px;
     color: #111;
-    font-size: 22px;
-    font-family: "ubuntu", "helvetica neue";
-    font-weight: 300;
-    background: #79164f;
+    font-size: 18px;
+    font-family: "Montserrat", "Helvetica Neue";
+    font-weight: 500;
+    background: #D87C91;
     color: #fff;
     width: 50%;
 
@@ -337,10 +479,12 @@ body span {
 
 @media only screen and (min-width: 1000px) {
   .imageTray {
-    width: 50%;
+    width: 25%;
     height: 100%;
-    left: 25%;
+    z-index: 99;
+    left: 0;
     right: 25%;
+    border: 1px solid red;
   }
   .imageTray .body {
     width: 100%;
@@ -374,8 +518,11 @@ body span {
   display: none;
 }
   .imageTray .inner {
-    background: rgba(250, 250, 250, 0.15);
-    backdrop-filter: blur(8px);
+    background: rgba(250, 250, 250, 0.7);
+    text-align: center;
+    width: 100%;
+    backdrop-filter: blur(16px);
+    box-shadow: 0px 0px 5px rgba(139, 126, 126, 0.15);
     flex-direction: column;
     display: flex;
     height: 100%;
@@ -395,17 +542,14 @@ body span {
     font-size: 18px;
     display: flex;
     justify-content: center;
-    color: #fff;
+    color: #333;
     align-items: center;
     text-align: center;
     padding-left: 25px;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.05);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-    font-family: "ubuntu", "helvetica neue";
+    font-family: "Montserrat", "Helvetica Neue";
     font-size: 30px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .imageTray .inner .title button {
     border: none;
@@ -413,7 +557,7 @@ body span {
     padding: 15px 25px;
     color: #111;
     font-size: 18px;
-    font-family: "ubuntu", "helvetica neue";
+    font-family: "Montserrat", "Helvetica Neue";
     font-weight: 300;
     color: #fff;
     font-size: 24px;
@@ -445,24 +589,23 @@ body span {
   .imageTray .actions {
     display: flex;
     padding: 150px;
-    font-family: "ubuntu", "helvetica neue";
+    font-family: "Montserrat", "Helvetica Neue";
     margin-top: auto;
   }
   .imageTray .actions button {
     border: none;
     border-radius: 66px;
-    margin: 25px auto;
+    margin: 35px auto;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-    height: 70px;
+    height: 60px;
     width: 85%;
     color: #111;
     font-size: 22px;
     font-family: "ubuntu", "helvetica neue";
     font-weight: 300;
-    background: #df9da9;
-    background: #f2e5de;
-
-    background: #79164f;
+    font-family: "Montserrat", "Helvetica Neue";
+    font-weight: 500;
+    background: #D87C91;
     color: #fff;
   }
 
